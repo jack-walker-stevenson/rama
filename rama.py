@@ -1,11 +1,16 @@
-from sys import argv
-from Bio.PDB.PDBParser import PDBParser
-from Bio.PDB import is_aa
-from math import sqrt, atan2, degrees
-from matplotlib import pyplot, rc
 import operator
 import argparse
+from sys import argv
+from math import sqrt, atan2, degrees
 
+from Bio.PDB.PDBParser import PDBParser
+from Bio.PDB import is_aa
+from matplotlib import pyplot, rc
+
+
+# argparser = argparse.ArgumentParser()
+# argparser.add_argument('filename', type=str, nargs=1, help='pdb filename')
+# argparser.add_argument('chain', type=str, nargs=1, default='A', help='pdb filename')
 
 # pythonic vector ops are extensible to higher dimensions but slower here
 def add(v0, v1):
@@ -60,9 +65,6 @@ def torsion(a, b, c, d):
     y = dot(m1, n2)
     return degrees(atan2(y, x))
 
-# argparser = argparse.ArgumentParser()
-# argparser.add_argument('filename', type=str, nargs=1, help='pdb filename')
-# argparser.add_argument('chain', type=str, nargs=1, default='A', help='pdb filename')
 script, filename = argv
 # pull pdb id out of path string e.g. '../1axc.pdb'
 pdb_id = filename.split('/')[-1].split('.')[0].upper()
