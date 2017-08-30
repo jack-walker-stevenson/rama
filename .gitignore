@@ -1,0 +1,12 @@
+# ideas from github's Python .gitignore
+__pycache__/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Sphinx documentation
+docs/_build/

@@ -44,7 +44,7 @@ def cross(v0, v1):
 
 def torsion(a, b, c, d):
     # had to change to sub(a, b) from (b, a) to correct 180-degree rotation
-    # (probably wrong)
+    # (possibly wrong)
     b1 = subtract(a, b)
     b2 = subtract(b, c)
     b3 = subtract(c, d)
