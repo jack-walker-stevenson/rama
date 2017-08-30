@@ -12,7 +12,8 @@ argparser = argparse.ArgumentParser()
 argparser.add_argument('filename', type=str, help='name of pdb file')
 argparser.add_argument('-v', '--verbose', action='store_true',
                        help='verbose mode')
-argparser.add_argument('--chain', type=str, help='specific chain to plot')
+argparser.add_argument('--chain', type=str,
+                       help='specific chain to plot (default is all chains)')
 args = argparser.parse_args()
 
 # pull pdb id out of path string e.g. '../1axc.pdb'
