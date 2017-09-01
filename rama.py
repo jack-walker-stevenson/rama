@@ -77,8 +77,8 @@ else:  # plot residues from all chains
                     break
 
 rc('text', usetex=True)
-pyplot.plot(phis[1:], psis[:-1], 'bo')
-# pyplot.plot(phis, psis, 'bo')
+# throw out first phi and last psi to plot correct phi, psi pairs
+pyplot.plot(phis[:-1], psis[1:], 'bo')
 pyplot.axis([-180, 180, -180, 180])
 pyplot.gca().set_aspect('equal')  # equal axis scale -> square plot
 pyplot.xticks([-180, -90, 0, 90, 180])
