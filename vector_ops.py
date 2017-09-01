@@ -43,14 +43,12 @@ def cross(v0, v1):
 
 
 def torsion(a, b, c, d):
-    # had to change to sub(a, b) from (b, a) to correct 180-degree rotation
-    # (possibly wrong)
-    b1 = subtract(a, b)
-    b2 = subtract(b, c)
-    b3 = subtract(c, d)
+    b1 = subtract(b, a)
+    b2 = subtract(c, b)
+    b3 = subtract(d, c)
     n1 = normalize(cross(b1, b2))
     n2 = normalize(cross(b2, b3))
     m1 = cross(n1, normalize(b2))
     x = dot(n1, n2)
     y = dot(m1, n2)
-    return degrees(atan2(y, x))
+    return -1 * degrees(atan2(y, x))

@@ -43,10 +43,8 @@ if args.chain:  # plot residues from a single chain
                 phi_coords = (a.get_coord() for a in phi_atoms)
                 psi_coords = (a.get_coord() for a in psi_atoms)
                 # calculate torsions from groups of coordinates and store
-                phi = torsion(*phi_coords)
-                phis.append(phi)
-                psi = torsion(*psi_coords)
-                psis.append(psi)
+                phis.append(torsion(*phi_coords))
+                psis.append(torsion(*psi_coords))
             # stop calculating torsions when AAs run out
             else:
                 break
@@ -61,6 +59,7 @@ else:  # plot residues from all chains
                 # next residue in chain for torsion calculation
                 nex = lchain[i+1]
                 # only calculate torsion if next residue is also an AA
+                # (assume first residue is an AA)
                 if is_aa(nex):
                     # make groups of relevant atoms to calculate angle
                     # phi: Ci, Ni+1, Ci+1alpha, Ci+1
@@ -71,22 +70,21 @@ else:  # plot residues from all chains
                     phi_coords = (a.get_coord() for a in phi_atoms)
                     psi_coords = (a.get_coord() for a in psi_atoms)
                     # calculate torsions from groups of coordinates and store
-                    phi = torsion(*phi_coords)
-                    phis.append(phi)
-                    psi = torsion(*psi_coords)
-                    psis.append(psi)
+                    phis.append(torsion(*phi_coords))
+                    psis.append(torsion(*psi_coords))
                 # stop calculating torsions when AAs run out
                 else:
                     break
 
 rc('text', usetex=True)
-pyplot.plot(phis, psis, 'bo')
+pyplot.plot(phis[1:], psis[:-1], 'bo')
+# pyplot.plot(phis, psis, 'bo')
 pyplot.axis([-180, 180, -180, 180])
 pyplot.gca().set_aspect('equal')  # equal axis scale -> square plot
 pyplot.xticks([-180, -90, 0, 90, 180])
 pyplot.yticks([-180, -90, 0, 90, 180])
 pyplot.xlabel(r'$\phi$', size=14)
-pyplot.ylabel(r'$\psi$', size=14)
+pyplot.ylabel(r'$\psi$', size=14, rotation=0)
 pyplot.title('Ramachandran plot for PDB {}'.format(pdb_id))
 pyplot.grid()
 pyplot.show()
