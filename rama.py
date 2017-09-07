@@ -1,5 +1,4 @@
 import argparse
-from sys import argv  # remove once argparse works
 
 from Bio.PDB.PDBParser import PDBParser
 from Bio.PDB import is_aa
